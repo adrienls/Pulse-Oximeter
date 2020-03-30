@@ -26,7 +26,7 @@ These 4 measurements are transmitted every 2 ms by USB link to the computer modu
 * [adrienls](https://github.com/adrienls)
 
 ## License
-This project is licensed under the GNU AGPLv3 License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the GNU AGPLv3 License - see the [LICENSE.md](LICENSE.md) file for details
 
 License chosen thanks to [choosealicense.com](https://choosealicense.com/)
 
