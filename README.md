@@ -1,4 +1,4 @@
-# MCQ-Correction
+# Pulse-Oximeter
 Acquisition, processing and display of a pulse oximeter signal in C.
 
 ## Getting Started
