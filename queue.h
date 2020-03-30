@@ -7,7 +7,7 @@
 
 #include "define.h"
 
-#define ERR_VAL -2147483648 //smallest value for an integer (32bits)
+#define ERR_VAL (-2147483648) //smallest value for an integer (32bits)
 
 typedef struct Node{
     absorp data;
@@ -23,6 +23,7 @@ typedef struct{
 Queue* CreateQueue();
 unsigned short isEmptyQueue(Queue* queue);
 unsigned short queueSize(Queue* queue);
+absorp getValue(Queue* queue, unsigned short index);
 void EnQueue(Queue* queue, absorp value);
 absorp DeQueue(Queue* queue);
 void DeleteQueue(Queue* queue);

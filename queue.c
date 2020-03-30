@@ -20,6 +20,18 @@ unsigned short queueSize(Queue* queue){
     return queue->size;
 }
 
+absorp getValue(Queue* queue, unsigned short index){
+    if(index > queueSize(queue)){
+        printf("Dans fir.c : erreur index '%d' supérieur à la taille de la queue '%d'\n", index, queueSize(queue));
+        exit(EXIT_FAILURE);
+    }
+    Node* start = queue->front;
+    for (unsigned short i = 1; i < index; ++i) {
+        start = start->next;
+    }
+    return start->data;
+}
+
 void EnQueue(Queue* queue, absorp value){
     if(queueSize(queue) == 51){                          //makes sure there is never more than 51 value in the queue
         DeQueue(queue);
@@ -39,12 +51,8 @@ void EnQueue(Queue* queue, absorp value){
 absorp DeQueue(Queue* queue){
     queue->size--;
     if (isEmptyQueue(queue) == 1){
-        absorp error;
-        error.acr = ERR_VAL;
-        error.acir = ERR_VAL;
-        error.dcir = ERR_VAL;
-        error.dcr = ERR_VAL;
-        return error;                                   //if the list is empty we cannot pop so we return a forbidden value
+        printf("Dans fir.c : erreur la queue est vide, l'appel à la fonction DeQueue n'est donc pas possible\n");
+        exit(EXIT_FAILURE);                              //if the list is empty we cannot pop so we return a forbidden value
     }
     Node* NextCell = (queue->front)->next;              //saves the address of the second cell
     absorp value = (queue->front)->data;                //saves the value of the first cell
