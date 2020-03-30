@@ -18,7 +18,7 @@ typedef struct{
 		float dcr;  /*!< DC R */
 		float acir;  /*!< AC IR */
 		float dcir;  /*!< DC IR */
-	} absorp;
+} absorp;
 
 /*! ------------------------------------------------------------
   
@@ -31,7 +31,7 @@ typedef struct{
 typedef struct{
 		int spo2;  /*!< SPO2 */
 		int pouls;  /*!< Pouls */
-	} oxy;
+} oxy;
 
 
 

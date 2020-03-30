@@ -18,6 +18,7 @@ These 4 measurements are transmitted every 2 ms by USB link to the computer modu
 * Reading on a USB device of signals AC R, DC R, AC IR and DC IR
 * Digital filtering of signals
 * Sp02 and heart rate measurement
+* Display of measurements via a JAVA interface
 
 ## Versioning
 * [Git](https://git-scm.com/) is used for versioning.
