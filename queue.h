@@ -7,8 +7,6 @@
 
 #include "define.h"
 
-#define ERR_VAL (-2147483648) //smallest value for an integer (32bits)
-
 typedef struct Node{
     absorp data;
     struct Node* next;

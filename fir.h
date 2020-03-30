@@ -2,4 +2,4 @@
 #include "queue.h"
 
 absorp firTest(char* filename);
-absorp fir(absorp myAbsorp, Queue* queue);
+absorp fir(absorp* signalValue, Queue* queue);

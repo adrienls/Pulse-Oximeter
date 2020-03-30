@@ -22,20 +22,17 @@ unsigned short queueSize(Queue* queue){
 
 absorp getValue(Queue* queue, unsigned short index){
     if(index > queueSize(queue)){
-        printf("Dans fir.c : erreur index '%d' supérieur à la taille de la queue '%d'\n", index, queueSize(queue));
+        printf("Dans queue.c : erreur index (%d) supérieur à la taille de la queue (%d)\n", index, queueSize(queue));
         exit(EXIT_FAILURE);
     }
     Node* start = queue->front;
-    for (unsigned short i = 1; i < index; ++i) {
+    for (unsigned short i = 0; i < index; i++) {        //starts at index 0 like an array
         start = start->next;
     }
     return start->data;
 }
 
 void EnQueue(Queue* queue, absorp value){
-    if(queueSize(queue) == 51){                          //makes sure there is never more than 51 value in the queue
-        DeQueue(queue);
-    }
     queue->size++;
     struct Node* NewCell = (Node*)malloc(sizeof(Node));
     NewCell->data = value;                              //the new cell contain the new value
@@ -43,20 +40,20 @@ void EnQueue(Queue* queue, absorp value){
     if (isEmptyQueue(queue) == 0){
         (queue->rear)->next = NewCell;                  //if the list is not empty the actual last cell now points toward the new cell
     }
-    queue -> rear = NewCell;                            //the last cell is now the new cell
+    queue->rear = NewCell;                              //the last cell is now the new cell
     if (isEmptyQueue(queue) == 1){
-        queue -> front = queue -> rear;                 //if the list was empty then the last cell is also the first one
+        queue->front = queue->rear;                     //if the list was empty then the last cell is also the first one
     }
 }
 absorp DeQueue(Queue* queue){
     queue->size--;
     if (isEmptyQueue(queue) == 1){
-        printf("Dans fir.c : erreur la queue est vide, l'appel à la fonction DeQueue n'est donc pas possible\n");
+        printf("Dans queue.c : erreur la queue est vide, l'appel à la fonction DeQueue n'est donc pas possible\n");
         exit(EXIT_FAILURE);                              //if the list is empty we cannot pop so we return a forbidden value
     }
     Node* NextCell = (queue->front)->next;              //saves the address of the second cell
     absorp value = (queue->front)->data;                //saves the value of the first cell
-    free (queue->front);                                //free the memory allocated to the first cell
+    free(queue->front);                                //free the memory allocated to the first cell
     queue->front = NextCell;                            //the first cell is now the old second cell
     return value;                                       //return the value we saved
 }
