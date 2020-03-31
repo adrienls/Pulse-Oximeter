@@ -1,5 +1,5 @@
-#ifndef DEFINE_H
-#define DEFINE_H
+#ifndef PULSE_OXIMETER_DEFINE_H
+#define PULSE_OXIMETER_DEFINE_H
 
 #include <unistd.h>
 #include <stdio.h>
@@ -33,7 +33,4 @@ typedef struct{
 		int pouls;  /*!< Pouls */
 } oxy;
 
-
-
-
-#endif // DEFINE_H
+#endif // PULSE_OXIMETER_DEFINE_H

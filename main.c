@@ -25,7 +25,7 @@ int main() {
     fin_iir(myIIR);
     fin_fir(myFIR) ;
      */
-    myAbsorp = iirTest("Tests/record1_fir.dat");
+    myAbsorp = firTest("Tests/record1.dat");
     printf("After FIR Filter, myAbsorp is:\nACr: %d - DCr: %d - ACir: %d - DCir: %d\n", (int)myAbsorp.acr, (int)myAbsorp.dcr, (int)myAbsorp.acir, (int)myAbsorp.dcir);
     return EXIT_SUCCESS;
 }

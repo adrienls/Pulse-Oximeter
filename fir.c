@@ -7,9 +7,9 @@ absorp firTest(char* filename){
     absorp filteredValue = {0, 0, 0, 0}, signalValue;
     int state = 0;
     Queue* queue = CreateQueue();
-    while(state != EOF){
+    while(state != EOF){            //read all the file until we get an End Of File signal
         signalValue = lireFichier(data, &state);
-        if(state == 6){
+        if(state == 6){             //makes sure 6 values were read from the files (counts the two line breaks)
             filteredValue = fir(&signalValue, queue);
         }
     }
@@ -28,7 +28,10 @@ absorp fir(absorp* signalValue, Queue* queue){
         DeQueue(queue);
     }
     EnQueue(queue, *signalValue);
-    for (unsigned short i = 0; i < size; ++i) {
+    unsigned short i;
+    for (i = 0; i < size; ++i) {
+        //the first new value is the first fir coefficient times the last value of the queue, which is the newest added (index 50 = size - 1)
+        //as the index of the coefficient (i) increases we each time times it by the older value (smaller index value in the queue)
         filteredValue.acr += (float)(FIR_TAPS[i] * getValue(queue, size-1-i).acr);
         filteredValue.acir += (float)(FIR_TAPS[i] * getValue(queue, size-1-i).acir);
     }

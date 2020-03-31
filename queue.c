@@ -21,12 +21,13 @@ unsigned short queueSize(Queue* queue){
 }
 
 absorp getValue(Queue* queue, unsigned short index){
-    if(index > queueSize(queue)){
-        printf("Dans queue.c : erreur index (%d) supérieur à la taille de la queue (%d)\n", index, queueSize(queue));
+    if(index >= queueSize(queue)){
+        printf("Dans queue.c : erreur index (%d) supérieur à la taille de la queue (%d). L'index commence à 0\n", index, queueSize(queue));
         exit(EXIT_FAILURE);
     }
     Node* start = queue->front;
-    for (unsigned short i = 0; i < index; i++) {        //starts at index 0 like an array
+    unsigned short i;
+    for (i = 0; i < index; i++) {        //starts at index 0 like an array
         start = start->next;
     }
     return start->data;

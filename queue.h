@@ -1,7 +1,3 @@
-//
-// Created by adrien on 30/03/2020.
-//
-
 #ifndef PULSE_OXIMETER_QUEUE_H
 #define PULSE_OXIMETER_QUEUE_H
 
