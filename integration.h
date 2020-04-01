@@ -7,6 +7,5 @@
 #include "mesure.h"
 
 void integrationTest(char* filename);
-void integration(absorp* signalValue, param_fir* signalFIR, param_irr* signalIRR, param_mesure* signalMesure);
 
 #endif //PULSE_OXIMETER_INTEGRATION_H
