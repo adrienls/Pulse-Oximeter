@@ -11,13 +11,13 @@ typedef struct Node{
 typedef struct{
     struct Node* front;
     struct Node* rear;
-    unsigned short size;
+    unsigned int size;
 } Queue;
 
 Queue* CreateQueue();
 unsigned short isEmptyQueue(Queue* queue);
-unsigned short queueSize(Queue* queue);
-absorp getValue(Queue* queue, unsigned short index);
+unsigned int queueSize(Queue* queue);
+absorp getValue(Queue* queue, unsigned int index);
 void EnQueue(Queue* queue, absorp value);
 absorp DeQueue(Queue* queue);
 void DeleteQueue(Queue* queue);

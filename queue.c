@@ -16,17 +16,17 @@ unsigned short isEmptyQueue(Queue* queue){
     else return 1;
 }
 
-unsigned short queueSize(Queue* queue){
+unsigned int queueSize(Queue* queue){
     return queue->size;
 }
 
-absorp getValue(Queue* queue, unsigned short index){
+absorp getValue(Queue* queue, unsigned int index){
     if(index >= queueSize(queue)){
         printf("Dans queue.c : erreur index (%d) supérieur à la taille de la queue (%d). L'index commence à 0\n", index, queueSize(queue));
         exit(EXIT_FAILURE);
     }
     Node* start = queue->front;
-    unsigned short i;
+    unsigned int i;
     for (i = 0; i < index; i++) {        //starts at index 0 like an array
         start = start->next;
     }
