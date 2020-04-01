@@ -1,37 +1,22 @@
 #include <stdio.h>
 #include "fichiers.h"
-#include "affichage.h"
-#include "fir.h"
-#include "iir.h"
-#include "mesure.h"
+#include "integration.h"
+
+#define SOURCE_FILE ("Tests/record1.dat")
 
 int main() {
-    int state=0;
-    absorp myAbsorp;
-    oxy myOxy = {76, 84};
-    /*
-    param_fir* myFIR = init_fir(...); // init FIR
-    param_iir* myIIR = init_iir(...); // init IIR
-    param_mesure* myMes = param_mesure(...) // init mesure
-    FILE* myFile = initFichier("record1.dat");
-    do{
-        myAbsorp = lireFichier(myFile,&state);
-        myAbsorp = fir(myAbsorp,myFIR);
-        myAbsorp = iir(myAbsorp,myIIR);
-        myOxy = mesure(myAbsorp,myMes);
-        affichage(myOxy);
-    }while(state != EOF);
-    finFichier(myFile);
-    fin_mesure(myMes);
-    fin_iir(myIIR);
-    fin_fir(myFIR) ;
-     */
-    //affichage(myOxy);
-    myAbsorp = firTest("Tests/record1.dat");
-    printf("After FIR Filter, myAbsorp is:\nACr: %d - DCr: %d - ACir: %d - DCir: %d\n", (int)myAbsorp.acr, (int)myAbsorp.dcr, (int)myAbsorp.acir, (int)myAbsorp.dcir);
-
-    /*myOxy = mesureTest("Tests/record1_iir.dat");
-    char pourcentage = '%';
-    printf("SPO2 is: %d%c - Pulse is: %d\n", myOxy.spo2, pourcentage, myOxy.pouls);*/
+    FILE* data = initFichier(SOURCE_FILE);
+    absorp signalValue;
+    param_fir signalFIR = {0};
+    param_irr signalIRR = {0};
+    param_mesure signalMesure = {0};
+    int state = 0;
+    while(state != EOF){                //read all the file until we get an End Of File signal
+        signalValue = lireFichier(data, &state);
+        if(state == 6){                 //makes sure 6 values were read from the files (counts the two line breaks)
+            integration(&signalValue, &signalFIR, &signalIRR, &signalMesure);   //calls all the processing functions and then display the result
+        }
+    }
+    finFichier(data);
     return EXIT_SUCCESS;
 }

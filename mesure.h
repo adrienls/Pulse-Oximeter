@@ -2,7 +2,8 @@
 #define PULSE_OXIMETER_MESURE_H
 
 #include "define.h"
-#include "queue.h"
+
+#define SAMPLE_FREQUENCY (0.002)
 
 typedef struct{
     float acrMax;

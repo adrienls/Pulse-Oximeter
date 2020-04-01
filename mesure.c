@@ -4,15 +4,14 @@
 oxy mesureTest(char* filename){
     FILE* data = initFichier(filename);
     absorp signalValue;
-    oxy processedOxy = {0, 0};
-    param_mesure signalMesure = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    oxy processedOxy = {0};
+    param_mesure signalMesure = {0};
     int state = 0;
     while(state != EOF){            //read all the file until we get an End Of File signal
         signalValue = lireFichier(data, &state);
         if(state == 6){             //makes sure 6 values were read from the files (counts the two line breaks)
             processedOxy = mesure(&signalValue, &signalMesure);
         }
-        signalMesure.previousSignal = signalValue;
     }
     finFichier(data);
     return processedOxy;
@@ -40,6 +39,8 @@ oxy mesure(absorp* signalValue, param_mesure* signalMesure){
     if(signalValue->acir < signalMesure->acirMin){  //depending on the current value, change the saved minimum for acir
         signalMesure->acirMin = signalValue->acir;
     }
+
+    signalMesure->previousSignal = *signalValue;
     return signalMesure->processedResult;
 }
 
@@ -52,7 +53,7 @@ oxy process(unsigned int nbEch, float acrPeakToPeak, float acirPeakToPeak, float
     else{
         calculated.spo2 = (int)(120.42 - 35.42*RsIR);
     }
-    calculated.pouls = (int)(60/(nbEch*0.002)); //the pulse is one over the number of values times the sample frequency, then multiplied by 60 to have it per minute
+    calculated.pouls = (int)(60/(nbEch*SAMPLE_FREQUENCY)); //the pulse is one over the number of values times the sample frequency, then multiplied by 60 to have it per minute
     return calculated;
 }
 
