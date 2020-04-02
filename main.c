@@ -3,8 +3,8 @@
 #include "lecture.h"
 #include "integration.h"
 
-#define LECTURE_TEST_FILE ("Tests/record1_bin.dat")
-#define INTEGRATION_TEST_FILE ("Tests/record1.dat")
+#define LECTURE_TEST_FILE ("Test-Files/record1_bin.dat")
+#define INTEGRATION_TEST_FILE ("Test-Files/record1.dat")
 
 void lectureTest(char* filename){
     int state = 0;
