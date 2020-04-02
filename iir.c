@@ -1,7 +1,6 @@
 #include "iir.h"
 #include "fichiers.h"
 
-
 absorp iirTest(char* filename){
     FILE* data = initFichier(filename);
     absorp signalValue, filteredValue = {0};

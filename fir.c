@@ -1,7 +1,6 @@
 #include "fir.h"
 #include "fichiers.h"
 
-
 absorp firTest(char* filename){
     FILE* data = initFichier(filename);
     absorp signalValue, filteredValue = {0};
