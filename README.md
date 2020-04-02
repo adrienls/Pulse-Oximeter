@@ -40,7 +40,6 @@ Start the program by launching the ./Pulse_Oximeter file
 
 ## Authors
 * [adrienls](https://github.com/adrienls)
-* [Millenyum](https://github.com/Millenyum)
 
 ## License
 This project is licensed under the GNU AGPLv3 License - see the [LICENSE](LICENSE) file for details
