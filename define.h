@@ -29,8 +29,8 @@ typedef struct{
   ------------------------------------------------------------*/
 
 typedef struct{
-		int spo2;  /*!< SPO2 */
-		int pouls;  /*!< Pouls */
+		unsigned short spo2;  /*!< SPO2 */
+		unsigned short pouls;  /*!< Pouls */
 } oxy;
 
 #endif // PULSE_OXIMETER_DEFINE_H

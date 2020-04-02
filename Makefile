@@ -1,7 +1,6 @@
 #
 # In order to execute this "Makefile" just type "make"
-#	A. Delis (ad@di.uoa.gr)
-#	https://www.nicomedes.assistedcoding.eu/#/app/makefilegen
+#	File generated thanks to https://www.nicomedes.assistedcoding.eu/#/app/makefilegen
 #
 
 OBJS	= main.o affichage.o fir.o iir.o integration.o lecture.o mesure.o fichiers.o

@@ -19,7 +19,7 @@ oxy mesureTest(char* filename){
 
 oxy mesure(absorp* signalValue, param_mesure* signalMesure){
     if(signalMesure->previousSignal.acr < 0 && signalValue->acr >= 0){  //detects a new rising edge crossing 0, which indicates a new period
-        signalMesure->processedResult = process(signalMesure->nbEch, signalMesure->acrMax - signalMesure->acrMin, signalMesure->acirMax - signalMesure->acirMin,signalValue->dcr, signalValue->dcir);
+        signalMesure->processedResult = process(signalMesure->nbEch, signalMesure->acrMax - signalMesure->acrMin, signalMesure->acirMax - signalMesure->acirMin, signalValue->dcr, signalValue->dcir);
 
         signalMesure->processedResult.pouls = pulseAverage(&signalMesure->previousPulse, signalMesure->processedResult.pouls);  //takes the average of the last pulse values
 
