@@ -20,6 +20,9 @@ oxy mesureTest(char* filename){
 oxy mesure(absorp* signalValue, param_mesure* signalMesure){
     if(signalMesure->previousSignal.acr < 0 && signalValue->acr >= 0){  //detects a new rising edge crossing 0, which indicates a new period
         signalMesure->processedResult = process(signalMesure->nbEch, signalMesure->acrMax - signalMesure->acrMin, signalMesure->acirMax - signalMesure->acirMin,signalValue->dcr, signalValue->dcir);
+
+        signalMesure->processedResult.pouls = pulseAverage(&signalMesure->previousPulse, signalMesure->processedResult.pouls);  //takes the average of the last pulse values
+
         signalMesure->acrMax = 0;
         signalMesure->acirMax = 0;
         signalMesure->acrMin = 0;
@@ -45,16 +48,33 @@ oxy mesure(absorp* signalValue, param_mesure* signalMesure){
 }
 
 oxy process(unsigned int nbEch, float acrPeakToPeak, float acirPeakToPeak, float dcr, float dcir){
-    oxy calculated = {0, 0};
+    oxy calculated = {0};
     float RsIR = (acrPeakToPeak / dcr) / (acirPeakToPeak / dcir);   //calculation of the ratio
     if(RsIR <= 1){  //the equation of spo2 is different depending on the value of RsIR
-        calculated.spo2 = (int)(110 - 25*RsIR);
+        calculated.spo2 = (unsigned short)(110 - 25*RsIR);
     }
     else{
-        calculated.spo2 = (int)(120.42 - 35.42*RsIR);
+        calculated.spo2 = (unsigned short)(120.42 - 35.42*RsIR);
     }
-    calculated.pouls = (int)(60/(nbEch*SAMPLE_FREQUENCY)); //the pulse is one over the number of values times the sample frequency, then multiplied by 60 to have it per minute
+    calculated.pouls = (unsigned short)(60/(nbEch*SAMPLE_FREQUENCY)); //the pulse is one over the number of values times the sample frequency, then multiplied by 60 to have it per minute
     return calculated;
+}
+
+unsigned short pulseAverage(pulse_average* pulseValue, unsigned short newPulse){
+    pulseValue->previousPulse[pulseValue->index] = newPulse; //add the new value to the array
+    if(pulseValue->size < NB_PERIOD_AVERAGE){
+        pulseValue->size++;  //increases the size, which represents the number of value in the array, by one until it reaches the maximum
+    }
+
+    unsigned short i, currentIndex = pulseValue->index;
+    for(i = 0; i < pulseValue->size - 1; i++){  //goes through every value of the array
+        newPulse += pulseValue->previousPulse[currentIndex];    //sums up the pulse value
+        currentIndex = (pulseValue->index + 1) % NB_PERIOD_AVERAGE; //makes sure the index increases but never goes over the size of the array
+    }
+    newPulse /= pulseValue->size;   //divide the sum by the number of pulse to obtain the average
+
+    pulseValue->index = (pulseValue->index + 1) % NB_PERIOD_AVERAGE; //index increases every time a value is added and overrides the first value when it reaches then en of the array
+    return newPulse;
 }
 
 

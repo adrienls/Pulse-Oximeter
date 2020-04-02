@@ -24,18 +24,19 @@ absorp fir(absorp* signalValue, param_fir* signalFIR){
 
     signalFIR->previousValues[signalFIR->index] = *signalValue; //add the new value to the array
     if(signalFIR->size < FIR_SIZE){
-        signalFIR->size++;  //increases the size, which represent the number of value in the array, by one until it reaches the maximum
+        signalFIR->size++;  //increases the size, which represents the number of value in the array, by one until it reaches the maximum
     }
-    signalFIR->index = (signalFIR->index + 1) % FIR_SIZE; //index increases every time a value is added and overrides the first value when it reaches then en of the array
 
-    unsigned short i, currentIndex = signalFIR->index; //curent index is initialized at the position of the new value we just added
+    unsigned short i, currentIndex = signalFIR->index; //current index is initialized at the position of the new value we just added
     for (i = 0; i < signalFIR->size; i++) {
-        currentIndex = (currentIndex == 0)? signalFIR->size-1 : currentIndex-1; //decreases the current index by one, or start again at the last value of the array if it is already equal to 0
         //the first new value is the first fir coefficient times the newest value added
         //the index changes as new value are added, thanks to the modulo we can simulate a circular buffer
         filteredValue.acr += (float)(FIR_TAPS[i] * signalFIR->previousValues[currentIndex].acr);
         filteredValue.acir += (float)(FIR_TAPS[i] * signalFIR->previousValues[currentIndex].acir);
+        currentIndex = (currentIndex == 0)? signalFIR->size-1 : currentIndex-1; //decreases the current index by one, or start again at the last value of the array if it is already equal to 0
     }
+
+    signalFIR->index = (signalFIR->index + 1) % FIR_SIZE; //index increases every time a value is added and overrides the first value when it reaches the end of the array
     return filteredValue;
 }
 

@@ -8,7 +8,7 @@
 typedef struct{
     unsigned short index;
     unsigned short size;
-    absorp previousValues[51];
+    absorp previousValues[FIR_SIZE];
 } param_fir;
 
 absorp firTest(char* filename);
