@@ -2,7 +2,7 @@
 Acquisition, processing and display of a pulse oximeter signal in C.
 
 ## Getting Started
-This app is a school project.
+This app is a school project. All the initial instructions from the school are in french and are located in the [Instructions](Instructions) folder.
 
 #### Goal of the project
 This project involves producing a medical equipment called a "pulse oximeter", which measures an individual's heart rate and blood oxygen saturation (SpO2) using a generally non-invasive photoelectric sensor at the end of the patient's finger.
@@ -40,7 +40,6 @@ Start the program by launching the ./Pulse_Oximeter file
 
 ## Authors
 * [adrienls](https://github.com/adrienls)
-* [Millenyum](https://github.com/Millenyum)
 
 ## License
 This project is licensed under the GNU AGPLv3 License - see the [LICENSE](LICENSE) file for details
@@ -48,4 +47,4 @@ This project is licensed under the GNU AGPLv3 License - see the [LICENSE](LICENS
 License chosen thanks to [choosealicense.com](https://choosealicense.com/)
 
 ## Acknowledgments
-This MCQ corrector is a one weeks project of our third year of engineering school in France.
+This Pulse-Oximeter is a one weeks project of our third year of engineering school in France.
