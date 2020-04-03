@@ -40,7 +40,6 @@ Start the program by launching the ./Pulse_Oximeter file
 
 ## Authors
 * [adrienls](https://github.com/adrienls)
-* [Millenyum](https://github.com/Millenyum)
 
 ## License
 This project is licensed under the GNU AGPLv3 License - see the [LICENSE](LICENSE) file for details
@@ -48,4 +47,4 @@ This project is licensed under the GNU AGPLv3 License - see the [LICENSE](LICENS
 License chosen thanks to [choosealicense.com](https://choosealicense.com/)
 
 ## Acknowledgments
-This MCQ corrector is a one weeks project of our third year of engineering school in France.
+This Pulse-Oximeter is a one weeks project of our third year of engineering school in France.
