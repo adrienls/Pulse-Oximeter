@@ -4,6 +4,7 @@
 #include "define.h"
 
 #define FRAME_SIZE (21)
+#define FRAME_NB_VALUE (6)
 #define FRAME_LAST_VALUE ('\r')
 
 absorp lecture(FILE* file_pf, int* file_state);

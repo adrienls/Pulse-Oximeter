@@ -24,6 +24,7 @@ absorp lecture(FILE* file_pf, int* file_state){
                 }
                 tmpStr[i] = c;                              //save the character in the buffer
             }
+            *file_state = FRAME_NB_VALUE;
 
             if(i != FRAME_SIZE){                            //if i is different from the frame size then the frame is not valid and we need to take the next one
                 invalidFrame = 1;
